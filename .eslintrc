@@ -1,0 +1,10 @@
+{
+  "extends": ["standard", "plugin:vue/recommended"],
+
+  "rules": {
+    "no-new": 0,
+    "vue/name-property-casing": ["error", "kebab-case"]
+  },
+
+  "plugins": ["html"]
+}
