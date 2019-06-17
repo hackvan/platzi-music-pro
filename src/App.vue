@@ -14,20 +14,18 @@
               a.button.is-primary.is-large(v-on:click="search") Buscar
             .control
               a.button.is-danger.is-large &times;
-          p.help.is-info
-            small {{ searchMessage }}
+      .container
+        p.help.is-info
+          small {{ searchMessage }}
 
       .container.results
         .columns
-          .column(v-for="track in tracks") {{ track.name }} - {{ track.artist }}
+          .column(v-for="track in tracks")
+            | {{ track.name }} - {{ track.artists[0].name }}
 </template>
 
 <script>
-const tracks = [
-  { name: 'Muchacha', artist: 'Luis Alberto Spinetta' },
-  { name: 'Hoy Aca en el baile', artist: 'El pepo' },
-  { name: 'I was made for loving you', artist: 'Kiss' }
-]
+import trackService from './services/track'
 
 export default {
   name: 'app',
@@ -44,7 +42,12 @@ export default {
   },
   methods: {
     search () {
-      this.tracks = tracks
+      if (!this.searchQuery) { return }
+
+      trackService.search(this.searchQuery)
+        .then(res => {
+          this.tracks = res.tracks.items
+        })
     }
   }
 }
