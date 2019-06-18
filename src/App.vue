@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import trackService from './services/track'
-import PmFooter from './components/layout/Footer.vue'
-import PmHeader from './components/layout/Header.vue'
+import trackService from '@/services/track'
+import PmFooter from '@/components/layout/Footer.vue'
+import PmHeader from '@/components/layout/Header.vue'
 
 export default {
   name: 'app',
