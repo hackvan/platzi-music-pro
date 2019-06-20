@@ -2,8 +2,10 @@
   #app
     pm-header
 
-    pm-notification(v-show="showNotification")
-      p(slot="body") No se encontraron resultados
+    pm-notification(
+      v-show="showNotification",
+      v-bind:type="notification.type")
+      p(slot="body") {{ notification.message }}
 
     pm-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
@@ -59,6 +61,7 @@ export default {
       tracks: [],
       isLoading: false,
       showNotification: false,
+      notification: { type: '', message: '' },
       selectedTrack: ''
     }
   },
@@ -84,7 +87,14 @@ export default {
 
       trackService.search(this.searchQuery)
         .then(res => {
-          this.showNotification = res.tracks.total === 0
+          this.showNotification = true
+          if (res.tracks.total === 0) {
+            this.notification.type = 'is-danger'
+            this.notification.message = 'No se encontraron resultados'
+          } else {
+            this.notification.type = 'is-success'
+            this.notification.message = 'Se encontraron los siguientes resultados'
+          }
           this.tracks = res.tracks.items
           this.isLoading = false
         })
