@@ -2,10 +2,13 @@
   section.hero.is-success
     .hero-head
       header.navbar
-        .navbar-start
+        .navbar-brand
           .navbar-item
-            strong.has-text-white Platzi Music
-        .navbar-end.navbar-menu
+              strong.has-text-white 📻 Platzi Music
+        .navbar-menu.is-active
+          .navbar-end
+            router-link.navbar-item(:to="{ name: 'search' }") Buscar
+            router-link.navbar-item(to="about") Nosotros
 
     .hero-body
       .container.has-text-centered
