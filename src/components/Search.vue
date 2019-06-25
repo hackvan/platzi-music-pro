@@ -20,7 +20,7 @@
             .control
               a.button.is-primary.is-large(v-on:click="search") Buscar
             .control
-              a.button.is-danger.is-large &times;
+              a.button.is-danger.is-large(v-on:click="clearSearch") &times;
       .container
         p.help.is-info
           small {{ searchMessage }}
@@ -91,6 +91,11 @@ export default {
           this.tracks = res.tracks.items
           this.isLoading = false
         })
+    },
+    clearSearch () {
+      this.searchQuery = ''
+      this.tracks = []
+      this.selectedTrack = ''
     },
     setSelectedTrack (id) {
       this.selectedTrack = id
