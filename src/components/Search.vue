@@ -31,6 +31,8 @@
             //- pm-track(v-bind:track="track", v-on:select="selectTrack")
             //- pm-track(:track="track",       @select="selectTrack")
             pm-track(
+              v-blur="track.preview_url"
+              :key="track.id"
               :class="{ 'is-active': track.id === selectedTrack }",
               :track="track",
               @select="setSelectedTrack")
