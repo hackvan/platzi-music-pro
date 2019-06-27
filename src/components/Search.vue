@@ -1,11 +1,14 @@
 <template lang="pug">
   main
-    pm-notification(
-      v-show="showNotification",
-      v-bind:type="notification.type")
-      p(slot="body") {{ notification.message }}
+    transition(name="move")
+      pm-notification(
+        v-show="showNotification",
+        v-bind:type="notification.type")
+        p(slot="body") {{ notification.message }}
 
-    pm-loader(v-show="isLoading")
+    transition(name="move")
+      pm-loader(v-show="isLoading")
+
     section.section(v-show="!isLoading")
       nav.navbar
         .container
