@@ -6,8 +6,7 @@
         v-bind:type="notification.type")
         p(slot="body") {{ notification.message }}
 
-    transition(name="move")
-      pm-loader(v-show="isLoading")
+    pm-loader(v-show="isLoading")
 
     section.section(v-show="!isLoading")
       nav.navbar
@@ -29,15 +28,16 @@
           small {{ searchMessage }}
 
       .container.results
-        .columns.is-multiline
-          .column.is-one-quarter(v-for="track in tracks")
+        //- .columns.is-multiline
+        transition-group(name="fade" tag="div" class="columns is-multiline")
+          .column.is-one-quarter(v-for="track in tracks" v-bind:key="track.id")
             //- pm-track(v-bind:track="track", v-on:select="selectTrack")
             //- pm-track(:track="track",       @select="selectTrack")
             pm-track(
               v-blur="track.preview_url"
               :key="track.id"
-              :class="{ 'is-active': track.id === selectedTrack }",
-              :track="track",
+              :class="{ 'is-active': track.id === selectedTrack }"
+              :track="track"
               @select="setSelectedTrack")
 
 </template>
@@ -82,6 +82,7 @@ export default {
       if (!this.searchQuery) { return }
 
       this.isLoading = true
+      this.tracks = []
 
       trackService.search(this.searchQuery)
         .then(res => {

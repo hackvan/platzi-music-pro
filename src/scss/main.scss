@@ -8,3 +8,12 @@
 .move-enter, .move-leave-to {
   transform: translateX(100%);
 }
+
+.fade-enter-active, .fade-leave-active {
+  transform: scale(1);
+  transition: all .4s linear;
+}
+
+.fade-enter, .fade-leave-to {
+  transform: scale(0);
+}

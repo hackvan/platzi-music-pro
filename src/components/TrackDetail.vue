@@ -1,30 +1,33 @@
 <template lang="pug">
   .container
     pm-loader(v-show="isLoading")
-    .columns(v-if="track && track.album" v-show="!isLoading")
-      .column.is-3.has-text-centered
-        figure.media-left
-          p.image
-            img(:src="track.album.images[0].url")
-          p
-            a.button.is-primary.is-large
-              span.icon(@click="selectTrack")
+    transition-group(name="fade" tag="div")
+      .columns(v-if="track && track.album"
+               v-show="!isLoading"
+               v-bind:key="track.id")
+        .column.is-3.has-text-centered
+          figure.media-left
+            p.image
+              img(:src="track.album.images[0].url")
+            p
+              a.button.is-primary.is-large
+                span.icon(@click="selectTrack")
 
-      .column.is-8
-        .panel
-          .panel-heading
-            h1.title {{ track.name }}
-          .panel-block
-            .article.media
-              .media.content
-                .content
-                  ul(v-for="(v, k) in track")
-                    li
-                      strong {{ k }}:&nbsp;
-                      span {{ v }}
-              nav.level
-                .level-left
-                  a.level-item
+        .column.is-8
+          .panel
+            .panel-heading
+              h1.title {{ track.name }}
+            .panel-block
+              .article.media
+                .media.content
+                  .content
+                    ul(v-for="(v, k) in track")
+                      li
+                        strong {{ k }}:&nbsp;
+                        span {{ v }}
+                nav.level
+                  .level-left
+                    a.level-item
 </template>
 
 <script>
