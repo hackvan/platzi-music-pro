@@ -8,7 +8,7 @@
         .navbar-menu.is-active
           .navbar-end
             router-link.navbar-item(:to="{ name: 'search' }") Buscar
-            router-link.navbar-item(to="about") Nosotros
+            router-link.navbar-item(:to="{ name: 'about' }") Nosotros
 
     .hero-body
       .container.has-text-centered
