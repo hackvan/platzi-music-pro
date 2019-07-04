@@ -21,7 +21,7 @@
             button.level-item.button.is-primary
               span.icon.is-small(v-on:click="selectTrack") ⏯
             button.level-item.button.is-warning
-              span.icon.is-small(v-on:click="goToTrack(track.id)") Ver
+              span.icon.is-small(v-on:click="goToTrack(track)") Ver
 </template>
 
 <script>
@@ -35,10 +35,10 @@ export default {
   },
 
   methods: {
-    goToTrack (id) {
+    goToTrack (track) {
       if (!this.track.preview_url) { return }
-
-      this.$router.push({ name: 'track', params: { id: id } })
+      this.$store.commit('setTrack', track)
+      this.$router.push({ name: 'track', params: { id: track.id } })
     }
   }
 }
