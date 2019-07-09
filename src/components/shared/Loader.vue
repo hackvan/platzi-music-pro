@@ -2,7 +2,7 @@
   .loader Loading...
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
   .loader,
   .loader:after {
     border-radius: 50%;
